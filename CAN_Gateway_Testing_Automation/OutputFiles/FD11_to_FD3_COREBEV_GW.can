@@ -1,0 +1,73 @@
+/*@!Encoding:1252*/
+includes
+{
+
+}
+
+variables
+{
+	message FD11::HVBATTERY2 HVBATTERY2_TX;
+	message FD3::HVBATTERY2 HVBATTERY2_RX;
+	message FD11::HVBATTERY5 HVBATTERY5_TX;
+	message FD3::HVBATTERY5 HVBATTERY5_RX;
+}
+
+testcase HVBattery_RealTimeClock()
+{
+	testCaseComment("Writing to 0 on FD11");
+	HVBATTERY5_TX.HVBattery_RealTimeClock = 0;
+	output(HVBATTERY5_TX);
+	testWaitForMessage(FD3::HVBATTERY5,1000);
+	if (HVBATTERY5_RX.HVBattery_RealTimeClock == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 2079063673 on FD11");
+	HVBATTERY5_TX.HVBattery_RealTimeClock = 2079063673;
+	output(HVBATTERY5_TX);
+	testWaitForMessage(FD3::HVBATTERY5,1000);
+	if (HVBATTERY5_RX.HVBattery_RealTimeClock == 2079063673)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 4294967294 on FD11");
+	HVBATTERY5_TX.HVBattery_RealTimeClock = 4294967294;
+	output(HVBATTERY5_TX);
+	testWaitForMessage(FD3::HVBATTERY5,1000);
+	if (HVBATTERY5_RX.HVBattery_RealTimeClock == 4294967294)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+on message FD3::HVBATTERY2
+{
+}
+
+on message FD3::HVBATTERY5
+{
+	HVBATTERY5_RX.HVBattery_RealTimeClock = this.HVBattery_RealTimeClock;
+}
+
+void MainTest ()
+{
+	testGroupBegin("HVBATTERY2","");
+	testGroupEnd();
+	testGroupBegin("HVBATTERY5","");
+	HVBattery_RealTimeClock();
+	testGroupEnd();
+}

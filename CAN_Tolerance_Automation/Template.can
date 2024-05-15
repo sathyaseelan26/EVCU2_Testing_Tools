@@ -1,0 +1,482 @@
+/*@!Encoding:1252*/
+includes
+{
+
+}
+variables
+{
+int ID = 0;
+
+int AXLE_TORQUE_FD_1_found = 0;
+int BATTERY_HV_STATUS1_found = 0;
+int CHARGE_SCHEDULE_HCP1_found = 0;
+int CHARGE_SCHEDULE_NEXT_found = 0;
+int CLIMATE_SCHEDULE_HCP1_found = 0;
+int DRIVETRAIN_FD_3_found = 0;
+int ENGINE_SIMULATOR1_found = 0;
+int HCP_CHARGING_STAT_found = 0;
+int HVBATTERY2_found = 0;
+int HVBATTERY5_found = 0;
+int HYBRID_DISPLAY_found = 0;
+int HYBRID_DISPLAY2_found = 0;
+int HYBRID_HVAC_found = 0;
+int HYBRID_POWERTRAIN1_found = 0;
+int HYBRID_POWERTRAIN2_found = 0;
+int HYBRID_POWERTRAIN4_found = 0;
+int HYBRID_POWERTRAIN5_found = 0;
+int HYBRID_POWERTRAIN6_found = 0;
+int HYBRID_RM_MOTORS_found = 0;
+int HYBRID_RM_MOTORS_2_found = 0;
+int HYBRID_THERMAL_COMMAND_found = 0;
+int IMMO_CODE_REQUEST_found = 0;
+int PDC_INFO_FD_EVCU2_found = 0;
+int PT_SYSTEM_FD_1_found = 0;
+int PT_TORQUE_FD_1_found = 0;
+int TRANSM_FD_1_found = 0;
+int TRANSM_FD_2_found = 0;
+int V2X_EVCU_found = 0;
+int VDCM_HMI_found = 0;
+int VDCM_HMI2_found = 0;
+int VDCM_PWT3_found = 0;
+
+}
+
+on stopMeasurement
+{
+
+if (AXLE_TORQUE_FD_1_found == 0)	write("AXLE_TORQUE_FD_1 was never received!");
+
+
+if (BATTERY_HV_STATUS1_found == 0)	write("BATTERY_HV_STATUS1 was never received!");
+
+
+if (CHARGE_SCHEDULE_HCP1_found == 0)	write("CHARGE_SCHEDULE_HCP1 was never received!");
+
+
+if (CHARGE_SCHEDULE_NEXT_found == 0)	write("CHARGE_SCHEDULE_NEXT was never received!");
+
+
+if (CLIMATE_SCHEDULE_HCP1_found == 0)	write("CLIMATE_SCHEDULE_HCP1 was never received!");
+
+
+if (DRIVETRAIN_FD_3_found == 0)	write("DRIVETRAIN_FD_3 was never received!");
+
+
+if (ENGINE_SIMULATOR1_found == 0)	write("ENGINE_SIMULATOR1 was never received!");
+
+
+if (HCP_CHARGING_STAT_found == 0)	write("HCP_CHARGING_STAT was never received!");
+
+
+if (HVBATTERY2_found == 0)	write("HVBATTERY2 was never received!");
+
+
+if (HVBATTERY5_found == 0)	write("HVBATTERY5 was never received!");
+
+
+if (HYBRID_DISPLAY_found == 0)	write("HYBRID_DISPLAY was never received!");
+
+
+if (HYBRID_DISPLAY2_found == 0)	write("HYBRID_DISPLAY2 was never received!");
+
+
+if (HYBRID_HVAC_found == 0)	write("HYBRID_HVAC was never received!");
+
+
+if (HYBRID_POWERTRAIN1_found == 0)	write("HYBRID_POWERTRAIN1 was never received!");
+
+
+if (HYBRID_POWERTRAIN2_found == 0)	write("HYBRID_POWERTRAIN2 was never received!");
+
+
+if (HYBRID_POWERTRAIN4_found == 0)	write("HYBRID_POWERTRAIN4 was never received!");
+
+
+if (HYBRID_POWERTRAIN5_found == 0)	write("HYBRID_POWERTRAIN5 was never received!");
+
+
+if (HYBRID_POWERTRAIN6_found == 0)	write("HYBRID_POWERTRAIN6 was never received!");
+
+
+if (HYBRID_RM_MOTORS_found == 0)	write("HYBRID_RM_MOTORS was never received!");
+
+
+if (HYBRID_RM_MOTORS_2_found == 0)	write("HYBRID_RM_MOTORS_2 was never received!");
+
+
+if (HYBRID_THERMAL_COMMAND_found == 0)	write("HYBRID_THERMAL_COMMAND was never received!");
+
+
+if (IMMO_CODE_REQUEST_found == 0)	write("IMMO_CODE_REQUEST was never received!");
+
+
+if (PDC_INFO_FD_EVCU2_found == 0)	write("PDC_INFO_FD_EVCU2 was never received!");
+
+
+if (PT_SYSTEM_FD_1_found == 0)	write("PT_SYSTEM_FD_1 was never received!");
+
+
+if (PT_TORQUE_FD_1_found == 0)	write("PT_TORQUE_FD_1 was never received!");
+
+
+if (TRANSM_FD_1_found == 0)	write("TRANSM_FD_1 was never received!");
+
+
+if (TRANSM_FD_2_found == 0)	write("TRANSM_FD_2 was never received!");
+
+
+if (V2X_EVCU_found == 0)	write("V2X_EVCU was never received!");
+
+
+if (VDCM_HMI_found == 0)	write("VDCM_HMI was never received!");
+
+
+if (VDCM_HMI2_found == 0)	write("VDCM_HMI2 was never received!");
+
+
+if (VDCM_PWT3_found == 0)	write("VDCM_PWT3 was never received!");
+
+
+}
+
+on message 0xCC
+{
+	long lastTime = 0;
+	long Temp = 0;
+	AXLE_TORQUE_FD_1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: AXLE_TORQUE_FD_1 with ID:0x%x id is %i and expected is: 10",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x124
+{
+	long lastTime = 0;
+	long Temp = 0;
+	BATTERY_HV_STATUS1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: BATTERY_HV_STATUS1 with ID:0x%x id is %i and expected is: 10",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x5B1
+{
+	long lastTime = 0;
+	long Temp = 0;
+	CHARGE_SCHEDULE_HCP1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: CHARGE_SCHEDULE_HCP1 with ID:0x%x id is %i and expected is: 1000",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x5B3
+{
+	long lastTime = 0;
+	long Temp = 0;
+	CHARGE_SCHEDULE_NEXT_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: CHARGE_SCHEDULE_NEXT with ID:0x%x id is %i and expected is: 1000",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x5BC
+{
+	long lastTime = 0;
+	long Temp = 0;
+	CLIMATE_SCHEDULE_HCP1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: CLIMATE_SCHEDULE_HCP1 with ID:0x%x id is %i and expected is: 1000",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x42C
+{
+	long lastTime = 0;
+	long Temp = 0;
+	DRIVETRAIN_FD_3_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: DRIVETRAIN_FD_3 with ID:0x%x id is %i and expected is: 100",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x11F
+{
+	long lastTime = 0;
+	long Temp = 0;
+	ENGINE_SIMULATOR1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: ENGINE_SIMULATOR1 with ID:0x%x id is %i and expected is: 10",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x5CF
+{
+	long lastTime = 0;
+	long Temp = 0;
+	HCP_CHARGING_STAT_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: HCP_CHARGING_STAT with ID:0x%x id is %i and expected is: 1000",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x403
+{
+	long lastTime = 0;
+	long Temp = 0;
+	HVBATTERY2_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: HVBATTERY2 with ID:0x%x id is %i and expected is: 100",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x72A
+{
+	long lastTime = 0;
+	long Temp = 0;
+	HVBATTERY5_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: HVBATTERY5 with ID:0x%x id is %i and expected is: 1000",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x419
+{
+	long lastTime = 0;
+	long Temp = 0;
+	HYBRID_DISPLAY_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: HYBRID_DISPLAY with ID:0x%x id is %i and expected is: 100",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x414
+{
+	long lastTime = 0;
+	long Temp = 0;
+	HYBRID_DISPLAY2_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: HYBRID_DISPLAY2 with ID:0x%x id is %i and expected is: 100",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x7A0
+{
+	long lastTime = 0;
+	long Temp = 0;
+	HYBRID_HVAC_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: HYBRID_HVAC with ID:0x%x id is %i and expected is: 1000",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x114
+{
+	long lastTime = 0;
+	long Temp = 0;
+	HYBRID_POWERTRAIN1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: HYBRID_POWERTRAIN1 with ID:0x%x id is %i and expected is: 10",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x10D
+{
+	long lastTime = 0;
+	long Temp = 0;
+	HYBRID_POWERTRAIN2_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: HYBRID_POWERTRAIN2 with ID:0x%x id is %i and expected is: 10",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x1DF
+{
+	long lastTime = 0;
+	long Temp = 0;
+	HYBRID_POWERTRAIN4_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: HYBRID_POWERTRAIN4 with ID:0x%x id is %i and expected is: 20",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x409
+{
+	long lastTime = 0;
+	long Temp = 0;
+	HYBRID_POWERTRAIN5_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: HYBRID_POWERTRAIN5 with ID:0x%x id is %i and expected is: 100",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x62C
+{
+	long lastTime = 0;
+	long Temp = 0;
+	HYBRID_POWERTRAIN6_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: HYBRID_POWERTRAIN6 with ID:0x%x id is %i and expected is: 500",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x7A4
+{
+	long lastTime = 0;
+	long Temp = 0;
+	HYBRID_RM_MOTORS_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: HYBRID_RM_MOTORS with ID:0x%x id is %i and expected is: 1000",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x73D
+{
+	long lastTime = 0;
+	long Temp = 0;
+	HYBRID_RM_MOTORS_2_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: HYBRID_RM_MOTORS_2 with ID:0x%x id is %i and expected is: 1000",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x408
+{
+	long lastTime = 0;
+	long Temp = 0;
+	HYBRID_THERMAL_COMMAND_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: HYBRID_THERMAL_COMMAND with ID:0x%x id is %i and expected is: 100",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x64
+{
+	long lastTime = 0;
+	long Temp = 0;
+	IMMO_CODE_REQUEST_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: IMMO_CODE_REQUEST with ID:0x%x id is %i and expected is: 0",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message PDC_INFO_FD_EVCU2
+{
+	long lastTime = 0;
+	long Temp = 0;
+	PDC_INFO_FD_EVCU2_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: PDC_INFO_FD_EVCU2 with ID:0x%x id is %i and expected is: 1000",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x107
+{
+	long lastTime = 0;
+	long Temp = 0;
+	PT_SYSTEM_FD_1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: PT_SYSTEM_FD_1 with ID:0x%x id is %i and expected is: 10",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0xFF
+{
+	long lastTime = 0;
+	long Temp = 0;
+	PT_TORQUE_FD_1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: PT_TORQUE_FD_1 with ID:0x%x id is %i and expected is: 10",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x116
+{
+	long lastTime = 0;
+	long Temp = 0;
+	TRANSM_FD_1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: TRANSM_FD_1 with ID:0x%x id is %i and expected is: 10",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x208
+{
+	long lastTime = 0;
+	long Temp = 0;
+	TRANSM_FD_2_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: TRANSM_FD_2 with ID:0x%x id is %i and expected is: 20",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x5D1
+{
+	long lastTime = 0;
+	long Temp = 0;
+	V2X_EVCU_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: V2X_EVCU with ID:0x%x id is %i and expected is: 1000",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x592
+{
+	long lastTime = 0;
+	long Temp = 0;
+	VDCM_HMI_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: VDCM_HMI with ID:0x%x id is %i and expected is: 1000",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x5A2
+{
+	long lastTime = 0;
+	long Temp = 0;
+	VDCM_HMI2_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: VDCM_HMI2 with ID:0x%x id is %i and expected is: 1000",this.id,Temp);
+	lastTime = this.TIME;
+}
+
+on message 0x69
+{
+	long lastTime = 0;
+	long Temp = 0;
+	VDCM_PWT3_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	write("Time tolerance of Message: VDCM_PWT3 with ID:0x%x id is %i and expected is: 1000",this.id,Temp);
+	lastTime = this.TIME;
+}
+

@@ -1,0 +1,258 @@
+includes
+{
+
+}
+
+variables
+{
+
+	msTimer tasks_50ms;
+	msTimer tasks_1000ms;
+	msTimer tasks_100ms;
+	msTimer tasks_500ms;
+	msTimer tasks_250ms;
+	msTimer tasks_20ms;
+	msTimer tasks_10ms;
+
+
+	message LV_CHARGER1 LV_CHARGER1;
+	message HVBATTERY5 HVBATTERY5;
+	message HVBATTERY2 HVBATTERY2;
+	message HVBATTERY_THERMAL HVBATTERY_THERMAL;
+	message HVBATTERY_RM_CHARGING1 HVBATTERY_RM_CHARGING1;
+	message HV_CHARGER2 HV_CHARGER2;
+	message DUALCHARGER_THERMAL DUALCHARGER_THERMAL;
+	message FOTA_MASTER FOTA_MASTER;
+	message PDC_INFO_FD_APM2 PDC_INFO_FD_APM2;
+	message OBCM_VDCM OBCM_VDCM;
+	message BATTERY_HV BATTERY_HV;
+	message APM_VDCM APM_VDCM;
+	message OBCM_VDCM2 OBCM_VDCM2;
+	message BATTERY_HV2 BATTERY_HV2;
+	message HV_CHARGER1 HV_CHARGER1;
+	message APM2_VDCM APM2_VDCM;
+	message BATTERY_HV_STATUS1 BATTERY_HV_STATUS1;
+	message BATTERY_HV_VLIMITS BATTERY_HV_VLIMITS;
+	message BATTERY_HV_POWERLIMITS BATTERY_HV_POWERLIMITS;
+	message PDC_INFO_FD_BPCM PDC_INFO_FD_BPCM;
+	message PDC_INFO_FD_IDCM PDC_INFO_FD_IDCM;
+	message IDCM_ISO15118_STATUS1 IDCM_ISO15118_STATUS1;
+	message PDC_INFO_FD_PPIM PDC_INFO_FD_PPIM;
+	message RPF_FD_1 RPF_FD_1;
+	message RPF_FD_2 RPF_FD_2;
+	message IDCM_CHADEMO_STATUS1 IDCM_CHADEMO_STATUS1;
+	message IDCM_OBD_DTC IDCM_OBD_DTC;
+
+}
+
+on start{
+	write("Press key 'a' for toggling 50ms messages");
+	write("Press key 'b' for toggling 1000ms messages");
+	write("Press key 'c' for toggling 100ms messages");
+	write("Press key 'd' for toggling 500ms messages");
+	write("Press key 'e' for toggling 250ms messages");
+	write("Press key 'f' for toggling 20ms messages");
+	write("Press key 'g' for toggling 10ms messages");
+	write("Press key 'z' for toggling all messages");
+}
+
+on key 'a'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_50ms,50);
+		write("started 50ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_50ms);
+		write("stopped 50ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'b'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_1000ms,1000);
+		write("started 1000ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_1000ms);
+		write("stopped 1000ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'c'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_100ms,100);
+		write("started 100ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_100ms);
+		write("stopped 100ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'd'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_500ms,500);
+		write("started 500ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_500ms);
+		write("stopped 500ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'e'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_250ms,250);
+		write("started 250ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_250ms);
+		write("stopped 250ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'f'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_20ms,20);
+		write("started 20ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_20ms);
+		write("stopped 20ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'g'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_10ms,10);
+		write("started 10ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_10ms);
+		write("stopped 10ms messages");
+		toggle = 0;
+	}
+}
+
+on timer tasks_50ms{
+	LV_CHARGER1.FDF = 1;
+	output(LV_CHARGER1);
+	setTimer(tasks_50ms,50);
+}
+on timer tasks_1000ms{
+	HVBATTERY5.FDF = 1;
+	output(HVBATTERY5);
+	HVBATTERY_RM_CHARGING1.FDF = 1;
+	output(HVBATTERY_RM_CHARGING1);
+	FOTA_MASTER.FDF = 1;
+	output(FOTA_MASTER);
+	PDC_INFO_FD_APM2.FDF = 1;
+	output(PDC_INFO_FD_APM2);
+	PDC_INFO_FD_BPCM.FDF = 1;
+	output(PDC_INFO_FD_BPCM);
+	PDC_INFO_FD_IDCM.FDF = 1;
+	output(PDC_INFO_FD_IDCM);
+	PDC_INFO_FD_PPIM.FDF = 1;
+	output(PDC_INFO_FD_PPIM);
+	setTimer(tasks_1000ms,1000);
+}
+on timer tasks_100ms{
+	HVBATTERY2.FDF = 1;
+	output(HVBATTERY2);
+	HVBATTERY_THERMAL.FDF = 1;
+	output(HVBATTERY_THERMAL);
+	HV_CHARGER1.FDF = 1;
+	output(HV_CHARGER1);
+	IDCM_ISO15118_STATUS1.FDF = 1;
+	output(IDCM_ISO15118_STATUS1);
+	RPF_FD_1.FDF = 1;
+	output(RPF_FD_1);
+	RPF_FD_2.FDF = 1;
+	output(RPF_FD_2);
+	IDCM_CHADEMO_STATUS1.FDF = 1;
+	output(IDCM_CHADEMO_STATUS1);
+	IDCM_OBD_DTC.FDF = 1;
+	output(IDCM_OBD_DTC);
+	setTimer(tasks_100ms,100);
+}
+on timer tasks_500ms{
+	HV_CHARGER2.FDF = 1;
+	output(HV_CHARGER2);
+	BATTERY_HV2.FDF = 1;
+	output(BATTERY_HV2);
+	setTimer(tasks_500ms,500);
+}
+on timer tasks_250ms{
+	DUALCHARGER_THERMAL.FDF = 1;
+	output(DUALCHARGER_THERMAL);
+	setTimer(tasks_250ms,250);
+}
+on timer tasks_20ms{
+	OBCM_VDCM.FDF = 1;
+	output(OBCM_VDCM);
+	APM_VDCM.FDF = 1;
+	output(APM_VDCM);
+	OBCM_VDCM2.FDF = 1;
+	output(OBCM_VDCM2);
+	BATTERY_HV_VLIMITS.FDF = 1;
+	output(BATTERY_HV_VLIMITS);
+	setTimer(tasks_20ms,20);
+}
+on timer tasks_10ms{
+	BATTERY_HV.FDF = 1;
+	output(BATTERY_HV);
+	APM2_VDCM.FDF = 1;
+	output(APM2_VDCM);
+	BATTERY_HV_STATUS1.FDF = 1;
+	output(BATTERY_HV_STATUS1);
+	BATTERY_HV_POWERLIMITS.FDF = 1;
+	output(BATTERY_HV_POWERLIMITS);
+	setTimer(tasks_10ms,10);
+}
+on key 'z'
+{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_50ms,50);
+		setTimer(tasks_1000ms,1000);
+		setTimer(tasks_100ms,100);
+		setTimer(tasks_500ms,500);
+		setTimer(tasks_250ms,250);
+		setTimer(tasks_20ms,20);
+		setTimer(tasks_10ms,10);
+		write("started all messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_50ms);
+		cancelTimer(tasks_1000ms);
+		cancelTimer(tasks_100ms);
+		cancelTimer(tasks_500ms);
+		cancelTimer(tasks_250ms);
+		cancelTimer(tasks_20ms);
+		cancelTimer(tasks_10ms);
+		write("stopped all messages");
+		toggle = 0;
+	}
+}
+

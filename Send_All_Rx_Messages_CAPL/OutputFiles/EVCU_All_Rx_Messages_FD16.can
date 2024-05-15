@@ -1,0 +1,237 @@
+includes
+{
+
+}
+
+variables
+{
+
+	msTimer tasks_100ms;
+	msTimer tasks_1000ms;
+	msTimer tasks_50ms;
+	msTimer tasks_20ms;
+	msTimer tasks_10ms;
+	msTimer tasks_200ms;
+
+
+	message OBD_CONTENT_FRAME OBD_CONTENT_FRAME;
+	message ENGINE_FD_8 ENGINE_FD_8;
+	message ENGINE_FD_7 ENGINE_FD_7;
+	message ENGINE_FD_6 ENGINE_FD_6;
+	message ENGINE_FD_5 ENGINE_FD_5;
+	message ENGINE_FD_1 ENGINE_FD_1;
+	message ELSDM_FD_1 ELSDM_FD_1;
+	message ENGINE_HYBD_FD_4 ENGINE_HYBD_FD_4;
+	message ENGINE_HYBD_FD_3 ENGINE_HYBD_FD_3;
+	message ENGINE_FD_3 ENGINE_FD_3;
+	message ENGINE_HYBD_FD_1 ENGINE_HYBD_FD_1;
+	message ENGINE_FD_2 ENGINE_FD_2;
+	message AGSM_FD_2 AGSM_FD_2;
+	message PARK_DATA PARK_DATA;
+	message PDC_INFO_FD_SGCP PDC_INFO_FD_SGCP;
+	message PDC_INFO_FD_MCPB PDC_INFO_FD_MCPB;
+	message PDC_INFO_FD_MCPA PDC_INFO_FD_MCPA;
+	message SGCP_OBD_DTC SGCP_OBD_DTC;
+	message MCPB_OBD_DTC MCPB_OBD_DTC;
+	message MCPA_OBD_DTC MCPA_OBD_DTC;
+	message SGCP_STATUS SGCP_STATUS;
+	message MCPB_STATUS MCPB_STATUS;
+	message MCPA_STATUS MCPA_STATUS;
+	message MCPB_PROPULSION MCPB_PROPULSION;
+	message MCPA_PROPULSION MCPA_PROPULSION;
+	message SGCP_PROPULSION SGCP_PROPULSION;
+	message PDC_INFO_FD_MRGB PDC_INFO_FD_MRGB;
+
+}
+
+on start{
+	write("Press key 'a' for toggling 100ms messages");
+	write("Press key 'b' for toggling 1000ms messages");
+	write("Press key 'c' for toggling 50ms messages");
+	write("Press key 'd' for toggling 20ms messages");
+	write("Press key 'e' for toggling 10ms messages");
+	write("Press key 'f' for toggling 200ms messages");
+	write("Press key 'z' for toggling all messages");
+}
+
+on key 'a'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_100ms,100);
+		write("started 100ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_100ms);
+		write("stopped 100ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'b'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_1000ms,1000);
+		write("started 1000ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_1000ms);
+		write("stopped 1000ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'c'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_50ms,50);
+		write("started 50ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_50ms);
+		write("stopped 50ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'd'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_20ms,20);
+		write("started 20ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_20ms);
+		write("stopped 20ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'e'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_10ms,10);
+		write("started 10ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_10ms);
+		write("stopped 10ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'f'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_200ms,200);
+		write("started 200ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_200ms);
+		write("stopped 200ms messages");
+		toggle = 0;
+	}
+}
+
+on timer tasks_100ms{
+	OBD_CONTENT_FRAME.FDF = 1;
+	output(OBD_CONTENT_FRAME);
+	ENGINE_FD_8.FDF = 1;
+	output(ENGINE_FD_8);
+	ENGINE_FD_1.FDF = 1;
+	output(ENGINE_FD_1);
+	ENGINE_HYBD_FD_3.FDF = 1;
+	output(ENGINE_HYBD_FD_3);
+	ENGINE_FD_3.FDF = 1;
+	output(ENGINE_FD_3);
+	SGCP_OBD_DTC.FDF = 1;
+	output(SGCP_OBD_DTC);
+	MCPB_OBD_DTC.FDF = 1;
+	output(MCPB_OBD_DTC);
+	MCPA_OBD_DTC.FDF = 1;
+	output(MCPA_OBD_DTC);
+	setTimer(tasks_100ms,100);
+}
+on timer tasks_1000ms{
+	ENGINE_FD_7.FDF = 1;
+	output(ENGINE_FD_7);
+	PDC_INFO_FD_SGCP.FDF = 1;
+	output(PDC_INFO_FD_SGCP);
+	PDC_INFO_FD_MCPB.FDF = 1;
+	output(PDC_INFO_FD_MCPB);
+	PDC_INFO_FD_MCPA.FDF = 1;
+	output(PDC_INFO_FD_MCPA);
+	PDC_INFO_FD_MRGB.FDF = 1;
+	output(PDC_INFO_FD_MRGB);
+	setTimer(tasks_1000ms,1000);
+}
+on timer tasks_50ms{
+	ENGINE_FD_6.FDF = 1;
+	output(ENGINE_FD_6);
+	setTimer(tasks_50ms,50);
+}
+on timer tasks_20ms{
+	ENGINE_FD_5.FDF = 1;
+	output(ENGINE_FD_5);
+	AGSM_FD_2.FDF = 1;
+	output(AGSM_FD_2);
+	SGCP_STATUS.FDF = 1;
+	output(SGCP_STATUS);
+	MCPB_STATUS.FDF = 1;
+	output(MCPB_STATUS);
+	MCPA_STATUS.FDF = 1;
+	output(MCPA_STATUS);
+	setTimer(tasks_20ms,20);
+}
+on timer tasks_10ms{
+	ELSDM_FD_1.FDF = 1;
+	output(ELSDM_FD_1);
+	ENGINE_HYBD_FD_1.FDF = 1;
+	output(ENGINE_HYBD_FD_1);
+	ENGINE_FD_2.FDF = 1;
+	output(ENGINE_FD_2);
+	PARK_DATA.FDF = 1;
+	output(PARK_DATA);
+	MCPB_PROPULSION.FDF = 1;
+	output(MCPB_PROPULSION);
+	MCPA_PROPULSION.FDF = 1;
+	output(MCPA_PROPULSION);
+	SGCP_PROPULSION.FDF = 1;
+	output(SGCP_PROPULSION);
+	setTimer(tasks_10ms,10);
+}
+on timer tasks_200ms{
+	ENGINE_HYBD_FD_4.FDF = 1;
+	output(ENGINE_HYBD_FD_4);
+	setTimer(tasks_200ms,200);
+}
+on key 'z'
+{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_100ms,100);
+		setTimer(tasks_1000ms,1000);
+		setTimer(tasks_50ms,50);
+		setTimer(tasks_20ms,20);
+		setTimer(tasks_10ms,10);
+		setTimer(tasks_200ms,200);
+		write("started all messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_100ms);
+		cancelTimer(tasks_1000ms);
+		cancelTimer(tasks_50ms);
+		cancelTimer(tasks_20ms);
+		cancelTimer(tasks_10ms);
+		cancelTimer(tasks_200ms);
+		write("stopped all messages");
+		toggle = 0;
+	}
+}
+

@@ -1,0 +1,180 @@
+includes
+{
+
+}
+variables
+{
+
+int PT_TORQUE_FD_1_found = 0;
+int AXLE_TORQUE_FD_1_found = 0;
+int BATTERY_HV_STATUS1_found = 0;
+int PT_SYSTEM_FD_1_found = 0;
+int HYBRID_POWERTRAIN6_found = 0;
+
+}
+
+on stopMeasurement
+{
+
+if (PT_TORQUE_FD_1_found == 0)	write("PT_TORQUE_FD_1 was never received on FD14!");
+
+
+if (AXLE_TORQUE_FD_1_found == 0)	write("AXLE_TORQUE_FD_1 was never received on FD14!");
+
+
+if (BATTERY_HV_STATUS1_found == 0)	write("BATTERY_HV_STATUS1 was never received on FD14!");
+
+
+if (PT_SYSTEM_FD_1_found == 0)	write("PT_SYSTEM_FD_1 was never received on FD14!");
+
+
+if (HYBRID_POWERTRAIN6_found == 0)	write("HYBRID_POWERTRAIN6 was never received on FD14!");
+
+
+}
+
+on message PT_TORQUE_FD_1
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	PT_TORQUE_FD_1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (10 * 10)/100;
+	Lower_Tolerance = 10 - Tolerance;
+	Upper_Tolerance = 10 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of PT_TORQUE_FD_1 in FD14 is %i and expected is: 10",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message AXLE_TORQUE_FD_1
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	AXLE_TORQUE_FD_1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (10 * 10)/100;
+	Lower_Tolerance = 10 - Tolerance;
+	Upper_Tolerance = 10 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of AXLE_TORQUE_FD_1 in FD14 is %i and expected is: 10",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message BATTERY_HV_STATUS1
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	BATTERY_HV_STATUS1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (10 * 10)/100;
+	Lower_Tolerance = 10 - Tolerance;
+	Upper_Tolerance = 10 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of BATTERY_HV_STATUS1 in FD14 is %i and expected is: 10",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message PT_SYSTEM_FD_1
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	PT_SYSTEM_FD_1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (10 * 10)/100;
+	Lower_Tolerance = 10 - Tolerance;
+	Upper_Tolerance = 10 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of PT_SYSTEM_FD_1 in FD14 is %i and expected is: 10",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message HYBRID_POWERTRAIN6
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	HYBRID_POWERTRAIN6_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (500 * 10)/100;
+	Lower_Tolerance = 500 - Tolerance;
+	Upper_Tolerance = 500 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of HYBRID_POWERTRAIN6 in FD14 is %i and expected is: 500",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+

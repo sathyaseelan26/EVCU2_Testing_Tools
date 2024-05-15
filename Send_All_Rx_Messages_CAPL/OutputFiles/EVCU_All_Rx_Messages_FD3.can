@@ -1,0 +1,414 @@
+includes
+{
+
+}
+
+variables
+{
+
+	msTimer tasks_100ms;
+	msTimer tasks_1000ms;
+	msTimer tasks_2000ms;
+	msTimer tasks_20ms;
+	msTimer tasks_10ms;
+	msTimer tasks_500ms;
+	msTimer tasks_50ms;
+	msTimer tasks_250ms;
+	msTimer tasks_200ms;
+
+
+	message VIN VIN;
+	message TELEMATIC_FD_5 TELEMATIC_FD_5;
+	message RFHUB_FD_3 RFHUB_FD_3;
+	message RFHUB_FD_1 RFHUB_FD_1;
+	message ORC_FD_3 ORC_FD_3;
+	message ORC_FD_1 ORC_FD_1;
+	message OBD_CONTENT_FRAME OBD_CONTENT_FRAME;
+	message IPC_FD_4 IPC_FD_4;
+	message IPC_FD_1 IPC_FD_1;
+	message IMPACT_INFO IMPACT_INFO;
+	message IBS3_DATA_2 IBS3_DATA_2;
+	message EPS_FD_1 EPS_FD_1;
+	message ENGINE_FD_8 ENGINE_FD_8;
+	message ENGINE_FD_7 ENGINE_FD_7;
+	message ENGINE_FD_6 ENGINE_FD_6;
+	message ENGINE_FD_5 ENGINE_FD_5;
+	message ENGINE_FD_1 ENGINE_FD_1;
+	message BRAKE_FD_7 BRAKE_FD_7;
+	message BRAKE_FD_5 BRAKE_FD_5;
+	message BRAKE_FD_4 BRAKE_FD_4;
+	message BRAKE_FD_3 BRAKE_FD_3;
+	message BRAKE_FD_1 BRAKE_FD_1;
+	message BCM_FD_9 BCM_FD_9;
+	message BCM_FD_7 BCM_FD_7;
+	message BCM_FD_6 BCM_FD_6;
+	message BCM_FD_4 BCM_FD_4;
+	message BCM_FD_2 BCM_FD_2;
+	message BCM_FD_18 BCM_FD_18;
+	message BCM_FD_12 BCM_FD_12;
+	message BCM_FD_11 BCM_FD_11;
+	message BCM_FD_10 BCM_FD_10;
+	message TELEMATIC_FD_15 TELEMATIC_FD_15;
+	message TELEMATIC_FD_14 TELEMATIC_FD_14;
+	message TELEMATIC_FD_11 TELEMATIC_FD_11;
+	message IPC_VEHICLE_SETUP IPC_VEHICLE_SETUP;
+	message IBS3_DATA_1 IBS3_DATA_1;
+	message ENGINE_HYBD_FD_4 ENGINE_HYBD_FD_4;
+	message ENGINE_HYBD_FD_3 ENGINE_HYBD_FD_3;
+	message ENGINE_FD_3 ENGINE_FD_3;
+	message CHARGE_SCHEDULE_HU1 CHARGE_SCHEDULE_HU1;
+	message BCM_FD_3 BCM_FD_3;
+	message BCM_FD_27 BCM_FD_27;
+	message BCM_FD_26 BCM_FD_26;
+	message BCM_FD_22 BCM_FD_22;
+	message ADAS_FD_INFO2 ADAS_FD_INFO2;
+	message ADAS_FD_HMI ADAS_FD_HMI;
+	message ENGINE_HYBD_FD_1 ENGINE_HYBD_FD_1;
+	message ENGINE_FD_2 ENGINE_FD_2;
+	message BRAKE_FD_2 BRAKE_FD_2;
+	message AGSM_FD_2 AGSM_FD_2;
+	message TBM_SCHEDULE_FD_1 TBM_SCHEDULE_FD_1;
+	message FOTA_MASTER FOTA_MASTER;
+	message BCM_FD_29 BCM_FD_29;
+	message ADAS_FD_INFO_C2 ADAS_FD_INFO_C2;
+	message ADAS_FD_INFO ADAS_FD_INFO;
+	message CLIMATE_SCHEDULE_TBM CLIMATE_SCHEDULE_TBM;
+	message CLIMATE_SCHEDULE_HU1 CLIMATE_SCHEDULE_HU1;
+	message IPC_VEHICLE_SETUP2 IPC_VEHICLE_SETUP2;
+	message TRSCM_FD_1 TRSCM_FD_1;
+	message TELEMATIC_FD_13 TELEMATIC_FD_13;
+	message BRAKE_FD_6 BRAKE_FD_6;
+	message TELEMATIC_FD_19 TELEMATIC_FD_19;
+	message TBM_COOP_CHARGING TBM_COOP_CHARGING;
+	message V2X_HU V2X_HU;
+	message SYNCHRO_DC_GLOBAL SYNCHRO_DC_GLOBAL;
+
+}
+
+on start{
+	write("Press key 'a' for toggling 100ms messages");
+	write("Press key 'b' for toggling 1000ms messages");
+	write("Press key 'c' for toggling 2000ms messages");
+	write("Press key 'd' for toggling 20ms messages");
+	write("Press key 'e' for toggling 10ms messages");
+	write("Press key 'f' for toggling 500ms messages");
+	write("Press key 'g' for toggling 50ms messages");
+	write("Press key 'h' for toggling 250ms messages");
+	write("Press key 'i' for toggling 200ms messages");
+	write("Press key 'z' for toggling all messages");
+}
+
+on key 'a'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_100ms,100);
+		write("started 100ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_100ms);
+		write("stopped 100ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'b'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_1000ms,1000);
+		write("started 1000ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_1000ms);
+		write("stopped 1000ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'c'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_2000ms,2000);
+		write("started 2000ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_2000ms);
+		write("stopped 2000ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'd'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_20ms,20);
+		write("started 20ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_20ms);
+		write("stopped 20ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'e'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_10ms,10);
+		write("started 10ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_10ms);
+		write("stopped 10ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'f'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_500ms,500);
+		write("started 500ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_500ms);
+		write("stopped 500ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'g'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_50ms,50);
+		write("started 50ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_50ms);
+		write("stopped 50ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'h'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_250ms,250);
+		write("started 250ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_250ms);
+		write("stopped 250ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'i'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_200ms,200);
+		write("started 200ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_200ms);
+		write("stopped 200ms messages");
+		toggle = 0;
+	}
+}
+
+on timer tasks_100ms{
+	VIN.FDF = 1;
+	output(VIN);
+	ORC_FD_1.FDF = 1;
+	output(ORC_FD_1);
+	OBD_CONTENT_FRAME.FDF = 1;
+	output(OBD_CONTENT_FRAME);
+	IPC_FD_4.FDF = 1;
+	output(IPC_FD_4);
+	ENGINE_FD_8.FDF = 1;
+	output(ENGINE_FD_8);
+	ENGINE_FD_1.FDF = 1;
+	output(ENGINE_FD_1);
+	BRAKE_FD_4.FDF = 1;
+	output(BRAKE_FD_4);
+	BCM_FD_4.FDF = 1;
+	output(BCM_FD_4);
+	BCM_FD_12.FDF = 1;
+	output(BCM_FD_12);
+	TELEMATIC_FD_11.FDF = 1;
+	output(TELEMATIC_FD_11);
+	ENGINE_HYBD_FD_3.FDF = 1;
+	output(ENGINE_HYBD_FD_3);
+	ENGINE_FD_3.FDF = 1;
+	output(ENGINE_FD_3);
+	BCM_FD_22.FDF = 1;
+	output(BCM_FD_22);
+	ADAS_FD_INFO2.FDF = 1;
+	output(ADAS_FD_INFO2);
+	ADAS_FD_HMI.FDF = 1;
+	output(ADAS_FD_HMI);
+	setTimer(tasks_100ms,100);
+}
+on timer tasks_1000ms{
+	TELEMATIC_FD_5.FDF = 1;
+	output(TELEMATIC_FD_5);
+	IPC_FD_1.FDF = 1;
+	output(IPC_FD_1);
+	IBS3_DATA_2.FDF = 1;
+	output(IBS3_DATA_2);
+	ENGINE_FD_7.FDF = 1;
+	output(ENGINE_FD_7);
+	BCM_FD_7.FDF = 1;
+	output(BCM_FD_7);
+	BCM_FD_11.FDF = 1;
+	output(BCM_FD_11);
+	TELEMATIC_FD_15.FDF = 1;
+	output(TELEMATIC_FD_15);
+	TELEMATIC_FD_14.FDF = 1;
+	output(TELEMATIC_FD_14);
+	IPC_VEHICLE_SETUP.FDF = 1;
+	output(IPC_VEHICLE_SETUP);
+	CHARGE_SCHEDULE_HU1.FDF = 1;
+	output(CHARGE_SCHEDULE_HU1);
+	BCM_FD_27.FDF = 1;
+	output(BCM_FD_27);
+	BCM_FD_26.FDF = 1;
+	output(BCM_FD_26);
+	TBM_SCHEDULE_FD_1.FDF = 1;
+	output(TBM_SCHEDULE_FD_1);
+	FOTA_MASTER.FDF = 1;
+	output(FOTA_MASTER);
+	BCM_FD_29.FDF = 1;
+	output(BCM_FD_29);
+	CLIMATE_SCHEDULE_TBM.FDF = 1;
+	output(CLIMATE_SCHEDULE_TBM);
+	CLIMATE_SCHEDULE_HU1.FDF = 1;
+	output(CLIMATE_SCHEDULE_HU1);
+	IPC_VEHICLE_SETUP2.FDF = 1;
+	output(IPC_VEHICLE_SETUP2);
+	TRSCM_FD_1.FDF = 1;
+	output(TRSCM_FD_1);
+	TELEMATIC_FD_13.FDF = 1;
+	output(TELEMATIC_FD_13);
+	TELEMATIC_FD_19.FDF = 1;
+	output(TELEMATIC_FD_19);
+	TBM_COOP_CHARGING.FDF = 1;
+	output(TBM_COOP_CHARGING);
+	V2X_HU.FDF = 1;
+	output(V2X_HU);
+	SYNCHRO_DC_GLOBAL.FDF = 1;
+	output(SYNCHRO_DC_GLOBAL);
+	setTimer(tasks_1000ms,1000);
+}
+on timer tasks_2000ms{
+	RFHUB_FD_3.FDF = 1;
+	output(RFHUB_FD_3);
+	setTimer(tasks_2000ms,2000);
+}
+on timer tasks_20ms{
+	RFHUB_FD_1.FDF = 1;
+	output(RFHUB_FD_1);
+	ENGINE_FD_5.FDF = 1;
+	output(ENGINE_FD_5);
+	BRAKE_FD_7.FDF = 1;
+	output(BRAKE_FD_7);
+	BRAKE_FD_1.FDF = 1;
+	output(BRAKE_FD_1);
+	BCM_FD_18.FDF = 1;
+	output(BCM_FD_18);
+	AGSM_FD_2.FDF = 1;
+	output(AGSM_FD_2);
+	setTimer(tasks_20ms,20);
+}
+on timer tasks_10ms{
+	ORC_FD_3.FDF = 1;
+	output(ORC_FD_3);
+	EPS_FD_1.FDF = 1;
+	output(EPS_FD_1);
+	BRAKE_FD_3.FDF = 1;
+	output(BRAKE_FD_3);
+	BCM_FD_2.FDF = 1;
+	output(BCM_FD_2);
+	ENGINE_HYBD_FD_1.FDF = 1;
+	output(ENGINE_HYBD_FD_1);
+	ENGINE_FD_2.FDF = 1;
+	output(ENGINE_FD_2);
+	BRAKE_FD_2.FDF = 1;
+	output(BRAKE_FD_2);
+	ADAS_FD_INFO_C2.FDF = 1;
+	output(ADAS_FD_INFO_C2);
+	ADAS_FD_INFO.FDF = 1;
+	output(ADAS_FD_INFO);
+	BRAKE_FD_6.FDF = 1;
+	output(BRAKE_FD_6);
+	setTimer(tasks_10ms,10);
+}
+on timer tasks_500ms{
+	IMPACT_INFO.FDF = 1;
+	output(IMPACT_INFO);
+	BRAKE_FD_5.FDF = 1;
+	output(BRAKE_FD_5);
+	BCM_FD_10.FDF = 1;
+	output(BCM_FD_10);
+	setTimer(tasks_500ms,500);
+}
+on timer tasks_50ms{
+	ENGINE_FD_6.FDF = 1;
+	output(ENGINE_FD_6);
+	IBS3_DATA_1.FDF = 1;
+	output(IBS3_DATA_1);
+	BCM_FD_3.FDF = 1;
+	output(BCM_FD_3);
+	setTimer(tasks_50ms,50);
+}
+on timer tasks_250ms{
+	BCM_FD_9.FDF = 1;
+	output(BCM_FD_9);
+	BCM_FD_6.FDF = 1;
+	output(BCM_FD_6);
+	setTimer(tasks_250ms,250);
+}
+on timer tasks_200ms{
+	ENGINE_HYBD_FD_4.FDF = 1;
+	output(ENGINE_HYBD_FD_4);
+	setTimer(tasks_200ms,200);
+}
+on key 'z'
+{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_100ms,100);
+		setTimer(tasks_1000ms,1000);
+		setTimer(tasks_2000ms,2000);
+		setTimer(tasks_20ms,20);
+		setTimer(tasks_10ms,10);
+		setTimer(tasks_500ms,500);
+		setTimer(tasks_50ms,50);
+		setTimer(tasks_250ms,250);
+		setTimer(tasks_200ms,200);
+		write("started all messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_100ms);
+		cancelTimer(tasks_1000ms);
+		cancelTimer(tasks_2000ms);
+		cancelTimer(tasks_20ms);
+		cancelTimer(tasks_10ms);
+		cancelTimer(tasks_500ms);
+		cancelTimer(tasks_50ms);
+		cancelTimer(tasks_250ms);
+		cancelTimer(tasks_200ms);
+		write("stopped all messages");
+		toggle = 0;
+	}
+}
+

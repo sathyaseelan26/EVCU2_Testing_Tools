@@ -1,0 +1,285 @@
+/*@!Encoding:1252*/
+includes
+{
+
+}
+
+variables
+{
+	message FD11::BATTERY_HV_STATUS1 BATTERY_HV_STATUS1_TX;
+	message FD14::BATTERY_HV_STATUS1 BATTERY_HV_STATUS1_RX;
+}
+
+testcase BPCM_HV_Trac_Bus_Sts()
+{
+	testCaseComment("Writing to 0 on FD11");
+	BATTERY_HV_STATUS1_TX.BPCM_HV_Trac_Bus_Sts = 0;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.BPCM_HV_Trac_Bus_Sts == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD11");
+	BATTERY_HV_STATUS1_TX.BPCM_HV_Trac_Bus_Sts = 1;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.BPCM_HV_Trac_Bus_Sts == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 7 on FD11");
+	BATTERY_HV_STATUS1_TX.BPCM_HV_Trac_Bus_Sts = 7;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.BPCM_HV_Trac_Bus_Sts == 7)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase BPCM_HV_SOC()
+{
+	testCaseComment("Writing to 0 on FD11");
+	BATTERY_HV_STATUS1_TX.BPCM_HV_SOC = 0;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.BPCM_HV_SOC == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 84.10000000000001 on FD11");
+	BATTERY_HV_STATUS1_TX.BPCM_HV_SOC = 841;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.BPCM_HV_SOC == 841)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 102.3 on FD11");
+	BATTERY_HV_STATUS1_TX.BPCM_HV_SOC = 1022;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.BPCM_HV_SOC == 1022)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase BPCM_HV_InternalVoltage()
+{
+	testCaseComment("Writing to 90.9 on FD11");
+	BATTERY_HV_STATUS1_TX.BPCM_HV_InternalVoltage = 0;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.BPCM_HV_InternalVoltage == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1226.6000000000001 on FD11");
+	BATTERY_HV_STATUS1_TX.BPCM_HV_InternalVoltage = 11357;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.BPCM_HV_InternalVoltage == 11357)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1729.2 on FD11");
+	BATTERY_HV_STATUS1_TX.BPCM_HV_InternalVoltage = 16382;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.BPCM_HV_InternalVoltage == 16382)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase BPCM_HV_Trac_Main_Contac_Sts()
+{
+	testCaseComment("Writing to 0 on FD11");
+	BATTERY_HV_STATUS1_TX.BPCM_HV_Trac_Main_Contac_Sts = 0;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.BPCM_HV_Trac_Main_Contac_Sts == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD11");
+	BATTERY_HV_STATUS1_TX.BPCM_HV_Trac_Main_Contac_Sts = 1;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.BPCM_HV_Trac_Main_Contac_Sts == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 7 on FD11");
+	BATTERY_HV_STATUS1_TX.BPCM_HV_Trac_Main_Contac_Sts = 7;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.BPCM_HV_Trac_Main_Contac_Sts == 7)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase MessageCounter_BATT_HV_STATUS1()
+{
+	testCaseComment("Writing to 0 on FD11");
+	BATTERY_HV_STATUS1_TX.MessageCounter_BATT_HV_STATUS1 = 0;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.MessageCounter_BATT_HV_STATUS1 == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 9 on FD11");
+	BATTERY_HV_STATUS1_TX.MessageCounter_BATT_HV_STATUS1 = 9;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.MessageCounter_BATT_HV_STATUS1 == 9)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 15 on FD11");
+	BATTERY_HV_STATUS1_TX.MessageCounter_BATT_HV_STATUS1 = 15;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.MessageCounter_BATT_HV_STATUS1 == 15)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase CRC_BATT_HV_STATUS1()
+{
+	testCaseComment("Writing to 0 on FD11");
+	BATTERY_HV_STATUS1_TX.CRC_BATT_HV_STATUS1 = 0;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.CRC_BATT_HV_STATUS1 == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 143 on FD11");
+	BATTERY_HV_STATUS1_TX.CRC_BATT_HV_STATUS1 = 143;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.CRC_BATT_HV_STATUS1 == 143)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 255 on FD11");
+	BATTERY_HV_STATUS1_TX.CRC_BATT_HV_STATUS1 = 255;
+	output(BATTERY_HV_STATUS1_TX);
+	testWaitForMessage(FD14::BATTERY_HV_STATUS1,1000);
+	if (BATTERY_HV_STATUS1_RX.CRC_BATT_HV_STATUS1 == 255)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+on message FD14::BATTERY_HV_STATUS1
+{
+	BATTERY_HV_STATUS1_RX.BPCM_HV_Trac_Bus_Sts = this.BPCM_HV_Trac_Bus_Sts;
+	BATTERY_HV_STATUS1_RX.BPCM_HV_SOC = this.BPCM_HV_SOC;
+	BATTERY_HV_STATUS1_RX.BPCM_HV_InternalVoltage = this.BPCM_HV_InternalVoltage;
+	BATTERY_HV_STATUS1_RX.BPCM_HV_Trac_Main_Contac_Sts = this.BPCM_HV_Trac_Main_Contac_Sts;
+	BATTERY_HV_STATUS1_RX.MessageCounter_BATT_HV_STATUS1 = this.MessageCounter_BATT_HV_STATUS1;
+	BATTERY_HV_STATUS1_RX.CRC_BATT_HV_STATUS1 = this.CRC_BATT_HV_STATUS1;
+}
+
+void MainTest ()
+{
+	testGroupBegin("BATTERY_HV_STATUS1","");
+	BPCM_HV_Trac_Bus_Sts();
+	BPCM_HV_SOC();
+	BPCM_HV_InternalVoltage();
+	BPCM_HV_Trac_Main_Contac_Sts();
+	MessageCounter_BATT_HV_STATUS1();
+	CRC_BATT_HV_STATUS1();
+	testGroupEnd();
+}

@@ -1,0 +1,54 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  msTimer tasks_10ms;
+  message ENGINE_FD_1 ENGINE_FD_1;
+}
+
+on start
+{
+  write("Press key 'a' for sending 10ms messages");
+  write("Press key 'z' for sending 10ms messages");
+}
+
+
+on key 'z' //Send all messages at their periodicity
+{
+  int toggle = 0;
+  if(toggle == 0){
+    setTimer(tasks_10ms,10);
+    write("started 10ms messages");
+    toggle = 1;
+  }
+  else{
+    cancelTimer(tasks_10ms);
+    write("stopped 10ms messages");
+    toggle = 0;
+  }
+  
+}
+  
+on key 'a'{
+  int toggle = 0;
+  if(toggle == 0){
+    setTimer(tasks_10ms,10);
+    write("started 10ms messages");
+    toggle = 1;
+  }
+  else{
+    cancelTimer(tasks_10ms);
+    write("stopped 10ms messages");
+    toggle = 0;
+  }
+
+}
+
+on timer tasks_10ms{
+  output(ENGINE_FD_1);
+  setTimer(tasks_10ms,10);
+}

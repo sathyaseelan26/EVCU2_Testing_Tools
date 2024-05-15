@@ -1,0 +1,4 @@
+1) Load the required DBC
+2) Get the node name
+3) Find the messages receieved by the node. Get its Name,ID and Cycle Time
+4) Gather the available cycle times

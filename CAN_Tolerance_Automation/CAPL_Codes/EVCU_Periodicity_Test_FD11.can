@@ -1,0 +1,1104 @@
+includes
+{
+
+}
+variables
+{
+
+int VIN_found = 0;
+int TRANSM_FD_2_found = 0;
+int IPC_FD_1_found = 0;
+int IMPACT_INFO_found = 0;
+int BRAKE_FD_4_found = 0;
+int BCM_FD_9_found = 0;
+int BCM_FD_7_found = 0;
+int BCM_FD_2_found = 0;
+int BCM_FD_10_found = 0;
+int HYBRID_SYSTEM_EPT1_found = 0;
+int BCM_FD_3_found = 0;
+int HYBRID_POWERTRAIN1_found = 0;
+int ENGINE_FD_2_found = 0;
+int BRAKE_FD_2_found = 0;
+int HYBRID_CHARGING_STATUS_found = 0;
+int HYBRID_CHARGING_COMMAND_found = 0;
+int VDCM_OBCM_found = 0;
+int VDCM_OBCM2_found = 0;
+int VDCM_PWT3_found = 0;
+int MCPA_DATA2_found = 0;
+int MCPB_DATA2_found = 0;
+int PDC_INFO_FD_EVCU2_found = 0;
+int SGCP_DATA2_found = 0;
+int PT_SYSTEM_FD_1_found = 0;
+int PT_ENERGY_FD_1_found = 0;
+int EVCU_ISO15118_STATUS1_found = 0;
+int HYBRID_DISPLAY2_found = 0;
+int RPF_FD_3_found = 0;
+int SGCP_STATUS_found = 0;
+int MCPB_STATUS_found = 0;
+int MCPA_STATUS_found = 0;
+int EVCU_CHADEMO_STATUS1_found = 0;
+int SYNCHRO_DC_GLOBAL_found = 0;
+
+}
+
+on stopMeasurement
+{
+
+if (VIN_found == 0)	write("VIN was never received on FD11!");
+
+
+if (TRANSM_FD_2_found == 0)	write("TRANSM_FD_2 was never received on FD11!");
+
+
+if (IPC_FD_1_found == 0)	write("IPC_FD_1 was never received on FD11!");
+
+
+if (IMPACT_INFO_found == 0)	write("IMPACT_INFO was never received on FD11!");
+
+
+if (BRAKE_FD_4_found == 0)	write("BRAKE_FD_4 was never received on FD11!");
+
+
+if (BCM_FD_9_found == 0)	write("BCM_FD_9 was never received on FD11!");
+
+
+if (BCM_FD_7_found == 0)	write("BCM_FD_7 was never received on FD11!");
+
+
+if (BCM_FD_2_found == 0)	write("BCM_FD_2 was never received on FD11!");
+
+
+if (BCM_FD_10_found == 0)	write("BCM_FD_10 was never received on FD11!");
+
+
+if (HYBRID_SYSTEM_EPT1_found == 0)	write("HYBRID_SYSTEM_EPT1 was never received on FD11!");
+
+
+if (BCM_FD_3_found == 0)	write("BCM_FD_3 was never received on FD11!");
+
+
+if (HYBRID_POWERTRAIN1_found == 0)	write("HYBRID_POWERTRAIN1 was never received on FD11!");
+
+
+if (ENGINE_FD_2_found == 0)	write("ENGINE_FD_2 was never received on FD11!");
+
+
+if (BRAKE_FD_2_found == 0)	write("BRAKE_FD_2 was never received on FD11!");
+
+
+if (HYBRID_CHARGING_STATUS_found == 0)	write("HYBRID_CHARGING_STATUS was never received on FD11!");
+
+
+if (HYBRID_CHARGING_COMMAND_found == 0)	write("HYBRID_CHARGING_COMMAND was never received on FD11!");
+
+
+if (VDCM_OBCM_found == 0)	write("VDCM_OBCM was never received on FD11!");
+
+
+if (VDCM_OBCM2_found == 0)	write("VDCM_OBCM2 was never received on FD11!");
+
+
+if (VDCM_PWT3_found == 0)	write("VDCM_PWT3 was never received on FD11!");
+
+
+if (MCPA_DATA2_found == 0)	write("MCPA_DATA2 was never received on FD11!");
+
+
+if (MCPB_DATA2_found == 0)	write("MCPB_DATA2 was never received on FD11!");
+
+
+if (PDC_INFO_FD_EVCU2_found == 0)	write("PDC_INFO_FD_EVCU2 was never received on FD11!");
+
+
+if (SGCP_DATA2_found == 0)	write("SGCP_DATA2 was never received on FD11!");
+
+
+if (PT_SYSTEM_FD_1_found == 0)	write("PT_SYSTEM_FD_1 was never received on FD11!");
+
+
+if (PT_ENERGY_FD_1_found == 0)	write("PT_ENERGY_FD_1 was never received on FD11!");
+
+
+if (EVCU_ISO15118_STATUS1_found == 0)	write("EVCU_ISO15118_STATUS1 was never received on FD11!");
+
+
+if (HYBRID_DISPLAY2_found == 0)	write("HYBRID_DISPLAY2 was never received on FD11!");
+
+
+if (RPF_FD_3_found == 0)	write("RPF_FD_3 was never received on FD11!");
+
+
+if (SGCP_STATUS_found == 0)	write("SGCP_STATUS was never received on FD11!");
+
+
+if (MCPB_STATUS_found == 0)	write("MCPB_STATUS was never received on FD11!");
+
+
+if (MCPA_STATUS_found == 0)	write("MCPA_STATUS was never received on FD11!");
+
+
+if (EVCU_CHADEMO_STATUS1_found == 0)	write("EVCU_CHADEMO_STATUS1 was never received on FD11!");
+
+
+if (SYNCHRO_DC_GLOBAL_found == 0)	write("SYNCHRO_DC_GLOBAL was never received on FD11!");
+
+
+}
+
+on message VIN
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	VIN_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (100 * 10)/100;
+	Lower_Tolerance = 100 - Tolerance;
+	Upper_Tolerance = 100 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of VIN in FD11 is %i and expected is: 100",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message TRANSM_FD_2
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	TRANSM_FD_2_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (20 * 10)/100;
+	Lower_Tolerance = 20 - Tolerance;
+	Upper_Tolerance = 20 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of TRANSM_FD_2 in FD11 is %i and expected is: 20",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message IPC_FD_1
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	IPC_FD_1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (1000 * 10)/100;
+	Lower_Tolerance = 1000 - Tolerance;
+	Upper_Tolerance = 1000 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of IPC_FD_1 in FD11 is %i and expected is: 1000",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message IMPACT_INFO
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	IMPACT_INFO_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (500 * 10)/100;
+	Lower_Tolerance = 500 - Tolerance;
+	Upper_Tolerance = 500 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of IMPACT_INFO in FD11 is %i and expected is: 500",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message BRAKE_FD_4
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	BRAKE_FD_4_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (100 * 10)/100;
+	Lower_Tolerance = 100 - Tolerance;
+	Upper_Tolerance = 100 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of BRAKE_FD_4 in FD11 is %i and expected is: 100",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message BCM_FD_9
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	BCM_FD_9_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (250 * 10)/100;
+	Lower_Tolerance = 250 - Tolerance;
+	Upper_Tolerance = 250 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of BCM_FD_9 in FD11 is %i and expected is: 250",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message BCM_FD_7
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	BCM_FD_7_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (1000 * 10)/100;
+	Lower_Tolerance = 1000 - Tolerance;
+	Upper_Tolerance = 1000 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of BCM_FD_7 in FD11 is %i and expected is: 1000",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message BCM_FD_2
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	BCM_FD_2_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (10 * 10)/100;
+	Lower_Tolerance = 10 - Tolerance;
+	Upper_Tolerance = 10 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of BCM_FD_2 in FD11 is %i and expected is: 10",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message BCM_FD_10
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	BCM_FD_10_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (500 * 10)/100;
+	Lower_Tolerance = 500 - Tolerance;
+	Upper_Tolerance = 500 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of BCM_FD_10 in FD11 is %i and expected is: 500",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message HYBRID_SYSTEM_EPT1
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	HYBRID_SYSTEM_EPT1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (10 * 10)/100;
+	Lower_Tolerance = 10 - Tolerance;
+	Upper_Tolerance = 10 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of HYBRID_SYSTEM_EPT1 in FD11 is %i and expected is: 10",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message BCM_FD_3
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	BCM_FD_3_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (50 * 10)/100;
+	Lower_Tolerance = 50 - Tolerance;
+	Upper_Tolerance = 50 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of BCM_FD_3 in FD11 is %i and expected is: 50",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message HYBRID_POWERTRAIN1
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	HYBRID_POWERTRAIN1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (10 * 10)/100;
+	Lower_Tolerance = 10 - Tolerance;
+	Upper_Tolerance = 10 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of HYBRID_POWERTRAIN1 in FD11 is %i and expected is: 10",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message ENGINE_FD_2
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	ENGINE_FD_2_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (10 * 10)/100;
+	Lower_Tolerance = 10 - Tolerance;
+	Upper_Tolerance = 10 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of ENGINE_FD_2 in FD11 is %i and expected is: 10",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message BRAKE_FD_2
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	BRAKE_FD_2_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (10 * 10)/100;
+	Lower_Tolerance = 10 - Tolerance;
+	Upper_Tolerance = 10 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of BRAKE_FD_2 in FD11 is %i and expected is: 10",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message HYBRID_CHARGING_STATUS
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	HYBRID_CHARGING_STATUS_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (500 * 10)/100;
+	Lower_Tolerance = 500 - Tolerance;
+	Upper_Tolerance = 500 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of HYBRID_CHARGING_STATUS in FD11 is %i and expected is: 500",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message HYBRID_CHARGING_COMMAND
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	HYBRID_CHARGING_COMMAND_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (20 * 10)/100;
+	Lower_Tolerance = 20 - Tolerance;
+	Upper_Tolerance = 20 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of HYBRID_CHARGING_COMMAND in FD11 is %i and expected is: 20",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message VDCM_OBCM
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	VDCM_OBCM_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (20 * 10)/100;
+	Lower_Tolerance = 20 - Tolerance;
+	Upper_Tolerance = 20 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of VDCM_OBCM in FD11 is %i and expected is: 20",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message VDCM_OBCM2
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	VDCM_OBCM2_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (20 * 10)/100;
+	Lower_Tolerance = 20 - Tolerance;
+	Upper_Tolerance = 20 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of VDCM_OBCM2 in FD11 is %i and expected is: 20",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message VDCM_PWT3
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	VDCM_PWT3_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (1000 * 10)/100;
+	Lower_Tolerance = 1000 - Tolerance;
+	Upper_Tolerance = 1000 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of VDCM_PWT3 in FD11 is %i and expected is: 1000",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message MCPA_DATA2
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	MCPA_DATA2_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (100 * 10)/100;
+	Lower_Tolerance = 100 - Tolerance;
+	Upper_Tolerance = 100 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of MCPA_DATA2 in FD11 is %i and expected is: 100",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message MCPB_DATA2
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	MCPB_DATA2_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (100 * 10)/100;
+	Lower_Tolerance = 100 - Tolerance;
+	Upper_Tolerance = 100 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of MCPB_DATA2 in FD11 is %i and expected is: 100",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message PDC_INFO_FD_EVCU2
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	PDC_INFO_FD_EVCU2_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (1000 * 10)/100;
+	Lower_Tolerance = 1000 - Tolerance;
+	Upper_Tolerance = 1000 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of PDC_INFO_FD_EVCU2 in FD11 is %i and expected is: 1000",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message SGCP_DATA2
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	SGCP_DATA2_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (100 * 10)/100;
+	Lower_Tolerance = 100 - Tolerance;
+	Upper_Tolerance = 100 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of SGCP_DATA2 in FD11 is %i and expected is: 100",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message PT_SYSTEM_FD_1
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	PT_SYSTEM_FD_1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (10 * 10)/100;
+	Lower_Tolerance = 10 - Tolerance;
+	Upper_Tolerance = 10 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of PT_SYSTEM_FD_1 in FD11 is %i and expected is: 10",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message PT_ENERGY_FD_1
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	PT_ENERGY_FD_1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (10 * 10)/100;
+	Lower_Tolerance = 10 - Tolerance;
+	Upper_Tolerance = 10 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of PT_ENERGY_FD_1 in FD11 is %i and expected is: 10",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message EVCU_ISO15118_STATUS1
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	EVCU_ISO15118_STATUS1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (100 * 10)/100;
+	Lower_Tolerance = 100 - Tolerance;
+	Upper_Tolerance = 100 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of EVCU_ISO15118_STATUS1 in FD11 is %i and expected is: 100",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message HYBRID_DISPLAY2
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	HYBRID_DISPLAY2_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (100 * 10)/100;
+	Lower_Tolerance = 100 - Tolerance;
+	Upper_Tolerance = 100 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of HYBRID_DISPLAY2 in FD11 is %i and expected is: 100",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message RPF_FD_3
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	RPF_FD_3_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (100 * 10)/100;
+	Lower_Tolerance = 100 - Tolerance;
+	Upper_Tolerance = 100 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of RPF_FD_3 in FD11 is %i and expected is: 100",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message SGCP_STATUS
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	SGCP_STATUS_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (20 * 10)/100;
+	Lower_Tolerance = 20 - Tolerance;
+	Upper_Tolerance = 20 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of SGCP_STATUS in FD11 is %i and expected is: 20",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message MCPB_STATUS
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	MCPB_STATUS_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (20 * 10)/100;
+	Lower_Tolerance = 20 - Tolerance;
+	Upper_Tolerance = 20 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of MCPB_STATUS in FD11 is %i and expected is: 20",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message MCPA_STATUS
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	MCPA_STATUS_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (20 * 10)/100;
+	Lower_Tolerance = 20 - Tolerance;
+	Upper_Tolerance = 20 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of MCPA_STATUS in FD11 is %i and expected is: 20",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message EVCU_CHADEMO_STATUS1
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	EVCU_CHADEMO_STATUS1_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (100 * 10)/100;
+	Lower_Tolerance = 100 - Tolerance;
+	Upper_Tolerance = 100 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of EVCU_CHADEMO_STATUS1 in FD11 is %i and expected is: 100",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+
+on message SYNCHRO_DC_GLOBAL
+{
+	long lastTime = 0;
+	long Temp = 0;
+	long Lower_Tolerance = 0;
+	long Upper_Tolerance = 0;
+	long Tolerance = 0;
+	int repeated = 0;
+	int reported = 0;
+	SYNCHRO_DC_GLOBAL_found = 1;
+
+	Temp = ((this.TIME - lastTime) / 100.0);
+	Tolerance = (1000 * 10)/100;
+	Lower_Tolerance = 1000 - Tolerance;
+	Upper_Tolerance = 1000 + Tolerance;
+	if ((Temp < Lower_Tolerance) || (Temp > Upper_Tolerance)){
+		repeated = repeated + 1;
+}
+	else{
+		if (repeated <= 0 ) repeated = 0;
+		else repeated = repeated - 1;
+}
+	if ((repeated > 30) && (reported == 0)){
+		write("Periodicity of SYNCHRO_DC_GLOBAL in FD11 is %i and expected is: 1000",Temp);
+		reported = 1;
+}
+	lastTime = this.TIME;
+}
+

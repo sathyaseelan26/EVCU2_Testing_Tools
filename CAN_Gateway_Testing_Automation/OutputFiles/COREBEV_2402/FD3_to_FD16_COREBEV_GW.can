@@ -1,0 +1,1185 @@
+/*@!Encoding:1252*/
+includes
+{
+
+}
+
+variables
+{
+	message FD3::IPC_FD_1 IPC_FD_1_TX;
+	message FD16::IPC_FD_1 IPC_FD_1_RX;
+	message FD3::BCM_FD_10 BCM_FD_10_TX;
+	message FD16::BCM_FD_10 BCM_FD_10_RX;
+	message FD3::BCM_FD_9 BCM_FD_9_TX;
+	message FD16::BCM_FD_9 BCM_FD_9_RX;
+	message FD3::BCM_FD_2 BCM_FD_2_TX;
+	message FD16::BCM_FD_2 BCM_FD_2_RX;
+	message FD3::BRAKE_FD_2 BRAKE_FD_2_TX;
+	message FD16::BRAKE_FD_2 BRAKE_FD_2_RX;
+	message FD3::BRAKE_FD_4 BRAKE_FD_4_TX;
+	message FD16::BRAKE_FD_4 BRAKE_FD_4_RX;
+	message FD3::BRAKE_FD_5 BRAKE_FD_5_TX;
+	message FD16::BRAKE_FD_5 BRAKE_FD_5_RX;
+	message FD3::IMPACT_INFO IMPACT_INFO_TX;
+	message FD16::IMPACT_INFO IMPACT_INFO_RX;
+	message FD3::TELEMATIC_FD_1 TELEMATIC_FD_1_TX;
+	message FD16::TELEMATIC_FD_1 TELEMATIC_FD_1_RX;
+}
+
+testcase TotalOdometer()
+{
+	testCaseComment("Writing to 0 on FD3");
+	IPC_FD_1_TX.TotalOdometer = 0;
+	output(IPC_FD_1_TX);
+	testWaitForMessage(FD16::IPC_FD_1,1000);
+	if (IPC_FD_1_RX.TotalOdometer == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 706499 on FD3");
+	IPC_FD_1_TX.TotalOdometer = 706499;
+	output(IPC_FD_1_TX);
+	testWaitForMessage(FD16::IPC_FD_1,1000);
+	if (IPC_FD_1_RX.TotalOdometer == 706499)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1048575 on FD3");
+	IPC_FD_1_TX.TotalOdometer = 1048575;
+	output(IPC_FD_1_TX);
+	testWaitForMessage(FD16::IPC_FD_1,1000);
+	if (IPC_FD_1_RX.TotalOdometer == 1048575)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase CmdIgnSts()
+{
+	testCaseComment("Writing to 0 on FD3");
+	BCM_FD_10_TX.CmdIgnSts = 0;
+	output(BCM_FD_10_TX);
+	testWaitForMessage(FD16::BCM_FD_10,1000);
+	if (BCM_FD_10_RX.CmdIgnSts == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 2 on FD3");
+	BCM_FD_10_TX.CmdIgnSts = 2;
+	output(BCM_FD_10_TX);
+	testWaitForMessage(FD16::BCM_FD_10,1000);
+	if (BCM_FD_10_RX.CmdIgnSts == 2)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 7 on FD3");
+	BCM_FD_10_TX.CmdIgnSts = 7;
+	output(BCM_FD_10_TX);
+	testWaitForMessage(FD16::BCM_FD_10,1000);
+	if (BCM_FD_10_RX.CmdIgnSts == 7)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase MessageCounter_BCM10()
+{
+	testCaseComment("Writing to 0 on FD3");
+	BCM_FD_10_TX.MessageCounter_BCM10 = 0;
+	output(BCM_FD_10_TX);
+	testWaitForMessage(FD16::BCM_FD_10,1000);
+	if (BCM_FD_10_RX.MessageCounter_BCM10 == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 10 on FD3");
+	BCM_FD_10_TX.MessageCounter_BCM10 = 10;
+	output(BCM_FD_10_TX);
+	testWaitForMessage(FD16::BCM_FD_10,1000);
+	if (BCM_FD_10_RX.MessageCounter_BCM10 == 10)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 15 on FD3");
+	BCM_FD_10_TX.MessageCounter_BCM10 = 15;
+	output(BCM_FD_10_TX);
+	testWaitForMessage(FD16::BCM_FD_10,1000);
+	if (BCM_FD_10_RX.MessageCounter_BCM10 == 15)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase CRC_BCM10()
+{
+	testCaseComment("Writing to 0 on FD3");
+	BCM_FD_10_TX.CRC_BCM10 = 0;
+	output(BCM_FD_10_TX);
+	testWaitForMessage(FD16::BCM_FD_10,1000);
+	if (BCM_FD_10_RX.CRC_BCM10 == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 249 on FD3");
+	BCM_FD_10_TX.CRC_BCM10 = 249;
+	output(BCM_FD_10_TX);
+	testWaitForMessage(FD16::BCM_FD_10,1000);
+	if (BCM_FD_10_RX.CRC_BCM10 == 249)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 255 on FD3");
+	BCM_FD_10_TX.CRC_BCM10 = 255;
+	output(BCM_FD_10_TX);
+	testWaitForMessage(FD16::BCM_FD_10,1000);
+	if (BCM_FD_10_RX.CRC_BCM10 == 255)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase ExternalTemperature()
+{
+	testCaseComment("Writing to -85 on FD3");
+	BCM_FD_9_TX.ExternalTemperature = 0;
+	output(BCM_FD_9_TX);
+	testWaitForMessage(FD16::BCM_FD_9,1000);
+	if (BCM_FD_9_RX.ExternalTemperature == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 156.5 on FD3");
+	BCM_FD_9_TX.ExternalTemperature = 483;
+	output(BCM_FD_9_TX);
+	testWaitForMessage(FD16::BCM_FD_9,1000);
+	if (BCM_FD_9_RX.ExternalTemperature == 483)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 170 on FD3");
+	BCM_FD_9_TX.ExternalTemperature = 510;
+	output(BCM_FD_9_TX);
+	testWaitForMessage(FD16::BCM_FD_9,1000);
+	if (BCM_FD_9_RX.ExternalTemperature == 510)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase OperationalModeSts()
+{
+	testCaseComment("Writing to 0 on FD3");
+	BCM_FD_2_TX.OperationalModeSts = 0;
+	output(BCM_FD_2_TX);
+	testWaitForMessage(FD16::BCM_FD_2,1000);
+	if (BCM_FD_2_RX.OperationalModeSts == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 10 on FD3");
+	BCM_FD_2_TX.OperationalModeSts = 10;
+	output(BCM_FD_2_TX);
+	testWaitForMessage(FD16::BCM_FD_2,1000);
+	if (BCM_FD_2_RX.OperationalModeSts == 10)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 15 on FD3");
+	BCM_FD_2_TX.OperationalModeSts = 15;
+	output(BCM_FD_2_TX);
+	testWaitForMessage(FD16::BCM_FD_2,1000);
+	if (BCM_FD_2_RX.OperationalModeSts == 15)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase LatAcceleration_BSM()
+{
+	testCaseComment("Writing to -40.96 on FD3");
+	BRAKE_FD_2_TX.LatAcceleration_BSM = 0;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.LatAcceleration_BSM == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to -16.5 on FD3");
+	BRAKE_FD_2_TX.LatAcceleration_BSM = 1223;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.LatAcceleration_BSM == 1223)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 40.92 on FD3");
+	BRAKE_FD_2_TX.LatAcceleration_BSM = 4093;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.LatAcceleration_BSM == 4093)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase LongAcceleration_BSM()
+{
+	testCaseComment("Writing to -40.96 on FD3");
+	BRAKE_FD_2_TX.LongAcceleration_BSM = 0;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.LongAcceleration_BSM == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to -19.400000000000002 on FD3");
+	BRAKE_FD_2_TX.LongAcceleration_BSM = 1078;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.LongAcceleration_BSM == 1078)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 40.92 on FD3");
+	BRAKE_FD_2_TX.LongAcceleration_BSM = 4093;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.LongAcceleration_BSM == 4093)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase LongAccelerationFailSts_BSM()
+{
+	testCaseComment("Writing to 0 on FD3");
+	BRAKE_FD_2_TX.LongAccelerationFailSts_BSM = 0;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.LongAccelerationFailSts_BSM == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD3");
+	BRAKE_FD_2_TX.LongAccelerationFailSts_BSM = 1;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.LongAccelerationFailSts_BSM == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD3");
+	BRAKE_FD_2_TX.LongAccelerationFailSts_BSM = 1;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.LongAccelerationFailSts_BSM == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase LatAccelerationFailSts_BSM()
+{
+	testCaseComment("Writing to 0 on FD3");
+	BRAKE_FD_2_TX.LatAccelerationFailSts_BSM = 0;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.LatAccelerationFailSts_BSM == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD3");
+	BRAKE_FD_2_TX.LatAccelerationFailSts_BSM = 1;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.LatAccelerationFailSts_BSM == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD3");
+	BRAKE_FD_2_TX.LatAccelerationFailSts_BSM = 1;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.LatAccelerationFailSts_BSM == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase ESCActive()
+{
+	testCaseComment("Writing to 0 on FD3");
+	BRAKE_FD_2_TX.ESCActive = 0;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.ESCActive == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD3");
+	BRAKE_FD_2_TX.ESCActive = 1;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.ESCActive == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD3");
+	BRAKE_FD_2_TX.ESCActive = 1;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.ESCActive == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase ABSActive()
+{
+	testCaseComment("Writing to 0 on FD3");
+	BRAKE_FD_2_TX.ABSActive = 0;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.ABSActive == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD3");
+	BRAKE_FD_2_TX.ABSActive = 1;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.ABSActive == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD3");
+	BRAKE_FD_2_TX.ABSActive = 1;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.ABSActive == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase MessageCounter_BRAKE2()
+{
+	testCaseComment("Writing to 0 on FD3");
+	BRAKE_FD_2_TX.MessageCounter_BRAKE2 = 0;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.MessageCounter_BRAKE2 == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 9 on FD3");
+	BRAKE_FD_2_TX.MessageCounter_BRAKE2 = 9;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.MessageCounter_BRAKE2 == 9)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 15 on FD3");
+	BRAKE_FD_2_TX.MessageCounter_BRAKE2 = 15;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.MessageCounter_BRAKE2 == 15)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase CRC_BRAKE2()
+{
+	testCaseComment("Writing to 0 on FD3");
+	BRAKE_FD_2_TX.CRC_BRAKE2 = 0;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.CRC_BRAKE2 == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 70 on FD3");
+	BRAKE_FD_2_TX.CRC_BRAKE2 = 70;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.CRC_BRAKE2 == 70)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 255 on FD3");
+	BRAKE_FD_2_TX.CRC_BRAKE2 = 255;
+	output(BRAKE_FD_2_TX);
+	testWaitForMessage(FD16::BRAKE_FD_2,1000);
+	if (BRAKE_FD_2_RX.CRC_BRAKE2 == 255)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase EPBSts()
+{
+	testCaseComment("Writing to 0 on FD3");
+	BRAKE_FD_4_TX.EPBSts = 0;
+	output(BRAKE_FD_4_TX);
+	testWaitForMessage(FD16::BRAKE_FD_4,1000);
+	if (BRAKE_FD_4_RX.EPBSts == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 7 on FD3");
+	BRAKE_FD_4_TX.EPBSts = 7;
+	output(BRAKE_FD_4_TX);
+	testWaitForMessage(FD16::BRAKE_FD_4,1000);
+	if (BRAKE_FD_4_RX.EPBSts == 7)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 14 on FD3");
+	BRAKE_FD_4_TX.EPBSts = 14;
+	output(BRAKE_FD_4_TX);
+	testWaitForMessage(FD16::BRAKE_FD_4,1000);
+	if (BRAKE_FD_4_RX.EPBSts == 14)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase ABSFailSts()
+{
+	testCaseComment("Writing to 0 on FD3");
+	BRAKE_FD_5_TX.ABSFailSts = 0;
+	output(BRAKE_FD_5_TX);
+	testWaitForMessage(FD16::BRAKE_FD_5,1000);
+	if (BRAKE_FD_5_RX.ABSFailSts == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD3");
+	BRAKE_FD_5_TX.ABSFailSts = 1;
+	output(BRAKE_FD_5_TX);
+	testWaitForMessage(FD16::BRAKE_FD_5,1000);
+	if (BRAKE_FD_5_RX.ABSFailSts == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD3");
+	BRAKE_FD_5_TX.ABSFailSts = 1;
+	output(BRAKE_FD_5_TX);
+	testWaitForMessage(FD16::BRAKE_FD_5,1000);
+	if (BRAKE_FD_5_RX.ABSFailSts == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase ESCFailSts()
+{
+	testCaseComment("Writing to 0 on FD3");
+	BRAKE_FD_5_TX.ESCFailSts = 0;
+	output(BRAKE_FD_5_TX);
+	testWaitForMessage(FD16::BRAKE_FD_5,1000);
+	if (BRAKE_FD_5_RX.ESCFailSts == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD3");
+	BRAKE_FD_5_TX.ESCFailSts = 1;
+	output(BRAKE_FD_5_TX);
+	testWaitForMessage(FD16::BRAKE_FD_5,1000);
+	if (BRAKE_FD_5_RX.ESCFailSts == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD3");
+	BRAKE_FD_5_TX.ESCFailSts = 1;
+	output(BRAKE_FD_5_TX);
+	testWaitForMessage(FD16::BRAKE_FD_5,1000);
+	if (BRAKE_FD_5_RX.ESCFailSts == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase IMPACTConfirm()
+{
+	testCaseComment("Writing to 0 on FD3");
+	IMPACT_INFO_TX.IMPACTConfirm = 0;
+	output(IMPACT_INFO_TX);
+	testWaitForMessage(FD16::IMPACT_INFO,1000);
+	if (IMPACT_INFO_RX.IMPACTConfirm == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD3");
+	IMPACT_INFO_TX.IMPACTConfirm = 1;
+	output(IMPACT_INFO_TX);
+	testWaitForMessage(FD16::IMPACT_INFO,1000);
+	if (IMPACT_INFO_RX.IMPACTConfirm == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD3");
+	IMPACT_INFO_TX.IMPACTConfirm = 1;
+	output(IMPACT_INFO_TX);
+	testWaitForMessage(FD16::IMPACT_INFO,1000);
+	if (IMPACT_INFO_RX.IMPACTConfirm == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase IMPACTCommand()
+{
+	testCaseComment("Writing to 0 on FD3");
+	IMPACT_INFO_TX.IMPACTCommand = 0;
+	output(IMPACT_INFO_TX);
+	testWaitForMessage(FD16::IMPACT_INFO,1000);
+	if (IMPACT_INFO_RX.IMPACTCommand == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD3");
+	IMPACT_INFO_TX.IMPACTCommand = 1;
+	output(IMPACT_INFO_TX);
+	testWaitForMessage(FD16::IMPACT_INFO,1000);
+	if (IMPACT_INFO_RX.IMPACTCommand == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 1 on FD3");
+	IMPACT_INFO_TX.IMPACTCommand = 1;
+	output(IMPACT_INFO_TX);
+	testWaitForMessage(FD16::IMPACT_INFO,1000);
+	if (IMPACT_INFO_RX.IMPACTCommand == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase GPS_UTC_Minute()
+{
+	testCaseComment("Writing to 0 on FD3");
+	TELEMATIC_FD_1_TX.GPS_UTC_Minute = 0;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_UTC_Minute == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 27 on FD3");
+	TELEMATIC_FD_1_TX.GPS_UTC_Minute = 27;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_UTC_Minute == 27)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 59 on FD3");
+	TELEMATIC_FD_1_TX.GPS_UTC_Minute = 59;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_UTC_Minute == 59)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase GPS_UTC_Hour()
+{
+	testCaseComment("Writing to 0 on FD3");
+	TELEMATIC_FD_1_TX.GPS_UTC_Hour = 0;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_UTC_Hour == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 22 on FD3");
+	TELEMATIC_FD_1_TX.GPS_UTC_Hour = 22;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_UTC_Hour == 22)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 23 on FD3");
+	TELEMATIC_FD_1_TX.GPS_UTC_Hour = 23;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_UTC_Hour == 23)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase GPS_Date_Day()
+{
+	testCaseComment("Writing to 1 on FD3");
+	TELEMATIC_FD_1_TX.GPS_Date_Day = 1;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_Date_Day == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 3 on FD3");
+	TELEMATIC_FD_1_TX.GPS_Date_Day = 3;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_Date_Day == 3)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 31 on FD3");
+	TELEMATIC_FD_1_TX.GPS_Date_Day = 31;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_Date_Day == 31)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase GPS_Date_Month()
+{
+	testCaseComment("Writing to 1 on FD3");
+	TELEMATIC_FD_1_TX.GPS_Date_Month = 1;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_Date_Month == 1)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 10 on FD3");
+	TELEMATIC_FD_1_TX.GPS_Date_Month = 10;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_Date_Month == 10)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 12 on FD3");
+	TELEMATIC_FD_1_TX.GPS_Date_Month = 12;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_Date_Month == 12)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase GPS_UTC_Second()
+{
+	testCaseComment("Writing to 0 on FD3");
+	TELEMATIC_FD_1_TX.GPS_UTC_Second = 0;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_UTC_Second == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 7.88 on FD3");
+	TELEMATIC_FD_1_TX.GPS_UTC_Second = 788;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_UTC_Second == 788)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 59.99 on FD3");
+	TELEMATIC_FD_1_TX.GPS_UTC_Second = 5999;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_UTC_Second == 5999)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+testcase GPS_Date_Year()
+{
+	testCaseComment("Writing to 0 on FD3");
+	TELEMATIC_FD_1_TX.GPS_Date_Year = 0;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_Date_Year == 0)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 57062 on FD3");
+	TELEMATIC_FD_1_TX.GPS_Date_Year = 57062;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_Date_Year == 57062)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+
+	testCaseComment("Writing to 65534 on FD3");
+	TELEMATIC_FD_1_TX.GPS_Date_Year = 65534;
+	output(TELEMATIC_FD_1_TX);
+	testWaitForMessage(FD16::TELEMATIC_FD_1,1000);
+	if (TELEMATIC_FD_1_RX.GPS_Date_Year == 65534)
+	{
+		testStepPass("Pass");
+	}
+		else
+	{
+		testStepFail("Fail");
+	}
+}
+
+on message FD16::IPC_FD_1
+{
+	IPC_FD_1_RX.TotalOdometer = this.TotalOdometer;
+}
+
+on message FD16::BCM_FD_10
+{
+	BCM_FD_10_RX.CmdIgnSts = this.CmdIgnSts;
+	BCM_FD_10_RX.MessageCounter_BCM10 = this.MessageCounter_BCM10;
+	BCM_FD_10_RX.CRC_BCM10 = this.CRC_BCM10;
+}
+
+on message FD16::BCM_FD_9
+{
+	BCM_FD_9_RX.ExternalTemperature = this.ExternalTemperature;
+}
+
+on message FD16::BCM_FD_2
+{
+	BCM_FD_2_RX.OperationalModeSts = this.OperationalModeSts;
+}
+
+on message FD16::BRAKE_FD_2
+{
+	BRAKE_FD_2_RX.LatAcceleration_BSM = this.LatAcceleration_BSM;
+	BRAKE_FD_2_RX.LongAcceleration_BSM = this.LongAcceleration_BSM;
+	BRAKE_FD_2_RX.LongAccelerationFailSts_BSM = this.LongAccelerationFailSts_BSM;
+	BRAKE_FD_2_RX.LatAccelerationFailSts_BSM = this.LatAccelerationFailSts_BSM;
+	BRAKE_FD_2_RX.ESCActive = this.ESCActive;
+	BRAKE_FD_2_RX.ABSActive = this.ABSActive;
+	BRAKE_FD_2_RX.MessageCounter_BRAKE2 = this.MessageCounter_BRAKE2;
+	BRAKE_FD_2_RX.CRC_BRAKE2 = this.CRC_BRAKE2;
+}
+
+on message FD16::BRAKE_FD_4
+{
+	BRAKE_FD_4_RX.EPBSts = this.EPBSts;
+}
+
+on message FD16::BRAKE_FD_5
+{
+	BRAKE_FD_5_RX.ABSFailSts = this.ABSFailSts;
+	BRAKE_FD_5_RX.ESCFailSts = this.ESCFailSts;
+}
+
+on message FD16::IMPACT_INFO
+{
+	IMPACT_INFO_RX.IMPACTConfirm = this.IMPACTConfirm;
+	IMPACT_INFO_RX.IMPACTCommand = this.IMPACTCommand;
+}
+
+on message FD16::TELEMATIC_FD_1
+{
+	TELEMATIC_FD_1_RX.GPS_UTC_Minute = this.GPS_UTC_Minute;
+	TELEMATIC_FD_1_RX.GPS_UTC_Hour = this.GPS_UTC_Hour;
+	TELEMATIC_FD_1_RX.GPS_Date_Day = this.GPS_Date_Day;
+	TELEMATIC_FD_1_RX.GPS_Date_Month = this.GPS_Date_Month;
+	TELEMATIC_FD_1_RX.GPS_UTC_Second = this.GPS_UTC_Second;
+	TELEMATIC_FD_1_RX.GPS_Date_Year = this.GPS_Date_Year;
+}
+
+void MainTest ()
+{
+	testGroupBegin("IPC_FD_1","");
+	TotalOdometer();
+	testGroupEnd();
+	testGroupBegin("BCM_FD_10","");
+	CmdIgnSts();
+	MessageCounter_BCM10();
+	CRC_BCM10();
+	testGroupEnd();
+	testGroupBegin("BCM_FD_9","");
+	ExternalTemperature();
+	testGroupEnd();
+	testGroupBegin("BCM_FD_2","");
+	OperationalModeSts();
+	testGroupEnd();
+	testGroupBegin("BRAKE_FD_2","");
+	LatAcceleration_BSM();
+	LongAcceleration_BSM();
+	LongAccelerationFailSts_BSM();
+	LatAccelerationFailSts_BSM();
+	ESCActive();
+	ABSActive();
+	MessageCounter_BRAKE2();
+	CRC_BRAKE2();
+	testGroupEnd();
+	testGroupBegin("BRAKE_FD_4","");
+	EPBSts();
+	testGroupEnd();
+	testGroupBegin("BRAKE_FD_5","");
+	ABSFailSts();
+	ESCFailSts();
+	testGroupEnd();
+	testGroupBegin("IMPACT_INFO","");
+	IMPACTConfirm();
+	IMPACTCommand();
+	testGroupEnd();
+	testGroupBegin("TELEMATIC_FD_1","");
+	GPS_UTC_Minute();
+	GPS_UTC_Hour();
+	GPS_Date_Day();
+	GPS_Date_Month();
+	GPS_UTC_Second();
+	GPS_Date_Year();
+	testGroupEnd();
+}

@@ -1,0 +1,6 @@
+1) Prompt the user for Board
+2) Modify Mapping Sheets and get the mapping sheets
+3) Get the DBCs
+4) Prompt for Tx or Rx
+5) Rx ---> Go with RX 
+6) Tx ---> Go with Tx

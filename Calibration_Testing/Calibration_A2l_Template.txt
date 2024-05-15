@@ -1,0 +1,11 @@
+/begin CHARACTERISTIC #Calibration_Name
+       "unsigned integer 32bit"
+       VALUE
+       #Start_Address
+       RTAA2L_Internal_Scalar_UnsignedByte
+       0
+       NO_COMPU_METHOD
+       0
+       255
+       DISPLAY_IDENTIFIER  #Calibration_Name
+/end CHARACTERISTIC

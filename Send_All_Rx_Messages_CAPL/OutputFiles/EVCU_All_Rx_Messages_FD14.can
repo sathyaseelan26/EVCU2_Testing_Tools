@@ -1,0 +1,180 @@
+includes
+{
+
+}
+
+variables
+{
+
+	msTimer tasks_10ms;
+	msTimer tasks_100ms;
+	msTimer tasks_500ms;
+	msTimer tasks_20ms;
+	msTimer tasks_1000ms;
+
+
+	message ORC_FD_3 ORC_FD_3;
+	message ORC_FD_1 ORC_FD_1;
+	message IMPACT_INFO IMPACT_INFO;
+	message EPS_FD_1 EPS_FD_1;
+	message BRAKE_FD_7 BRAKE_FD_7;
+	message BRAKE_FD_5 BRAKE_FD_5;
+	message BRAKE_FD_4 BRAKE_FD_4;
+	message BRAKE_FD_3 BRAKE_FD_3;
+	message BRAKE_FD_1 BRAKE_FD_1;
+	message ADAS_FD_HMI ADAS_FD_HMI;
+	message BRAKE_FD_2 BRAKE_FD_2;
+	message ADAS_FD_INFO ADAS_FD_INFO;
+	message TRSCM_FD_1 TRSCM_FD_1;
+	message BRAKE_FD_6 BRAKE_FD_6;
+	message ADAS_FD_INFO3 ADAS_FD_INFO3;
+
+}
+
+on start{
+	write("Press key 'a' for toggling 10ms messages");
+	write("Press key 'b' for toggling 100ms messages");
+	write("Press key 'c' for toggling 500ms messages");
+	write("Press key 'd' for toggling 20ms messages");
+	write("Press key 'e' for toggling 1000ms messages");
+	write("Press key 'z' for toggling all messages");
+}
+
+on key 'a'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_10ms,10);
+		write("started 10ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_10ms);
+		write("stopped 10ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'b'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_100ms,100);
+		write("started 100ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_100ms);
+		write("stopped 100ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'c'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_500ms,500);
+		write("started 500ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_500ms);
+		write("stopped 500ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'd'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_20ms,20);
+		write("started 20ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_20ms);
+		write("stopped 20ms messages");
+		toggle = 0;
+	}
+}
+
+on key 'e'{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_1000ms,1000);
+		write("started 1000ms messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_1000ms);
+		write("stopped 1000ms messages");
+		toggle = 0;
+	}
+}
+
+on timer tasks_10ms{
+	ORC_FD_3.FDF = 1;
+	output(ORC_FD_3);
+	EPS_FD_1.FDF = 1;
+	output(EPS_FD_1);
+	BRAKE_FD_3.FDF = 1;
+	output(BRAKE_FD_3);
+	BRAKE_FD_2.FDF = 1;
+	output(BRAKE_FD_2);
+	ADAS_FD_INFO.FDF = 1;
+	output(ADAS_FD_INFO);
+	BRAKE_FD_6.FDF = 1;
+	output(BRAKE_FD_6);
+	ADAS_FD_INFO3.FDF = 1;
+	output(ADAS_FD_INFO3);
+	setTimer(tasks_10ms,10);
+}
+on timer tasks_100ms{
+	ORC_FD_1.FDF = 1;
+	output(ORC_FD_1);
+	BRAKE_FD_4.FDF = 1;
+	output(BRAKE_FD_4);
+	ADAS_FD_HMI.FDF = 1;
+	output(ADAS_FD_HMI);
+	setTimer(tasks_100ms,100);
+}
+on timer tasks_500ms{
+	IMPACT_INFO.FDF = 1;
+	output(IMPACT_INFO);
+	BRAKE_FD_5.FDF = 1;
+	output(BRAKE_FD_5);
+	setTimer(tasks_500ms,500);
+}
+on timer tasks_20ms{
+	BRAKE_FD_7.FDF = 1;
+	output(BRAKE_FD_7);
+	BRAKE_FD_1.FDF = 1;
+	output(BRAKE_FD_1);
+	setTimer(tasks_20ms,20);
+}
+on timer tasks_1000ms{
+	TRSCM_FD_1.FDF = 1;
+	output(TRSCM_FD_1);
+	setTimer(tasks_1000ms,1000);
+}
+on key 'z'
+{
+	int toggle = 0;
+	if(toggle == 0){
+		setTimer(tasks_10ms,10);
+		setTimer(tasks_100ms,100);
+		setTimer(tasks_500ms,500);
+		setTimer(tasks_20ms,20);
+		setTimer(tasks_1000ms,1000);
+		write("started all messages");
+		toggle = 1;
+	}
+	else{
+		cancelTimer(tasks_10ms);
+		cancelTimer(tasks_100ms);
+		cancelTimer(tasks_500ms);
+		cancelTimer(tasks_20ms);
+		cancelTimer(tasks_1000ms);
+		write("stopped all messages");
+		toggle = 0;
+	}
+}
+
